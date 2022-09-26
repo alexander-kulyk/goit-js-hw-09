@@ -37,13 +37,13 @@ const options = {
 inputTimer.addEventListener('input', flatpickr('input[type="text"]', options));
 
 function onStartBtnClick() {
-   const currentTime = Date.now();
-//    const selectedDates = options.selectedDates
    
+//    const selectedDates = options.selectedDates
+        const selectedDates = options.selectedDates
 
     intervalId = setInterval(()=>{
-        
-        const selectedDates = options.selectedDates
+
+        const currentTime = Date.now();
         const countdownTimer =  selectedDates  - currentTime;
         const time = convertMs(countdownTimer)
         console.log('time',time);
