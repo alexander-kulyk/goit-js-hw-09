@@ -13,6 +13,7 @@ const minutesTimer = document.querySelector('[data-minutes]');
 const secondsTimer = document.querySelector('[data-seconds]')
 
 
+
 startBtn.setAttribute('disabled',true)
 startBtn.addEventListener('click', onStartBtnClick);
 resetBtn.addEventListener('click', onResetBtnClick)
@@ -83,8 +84,6 @@ function pad(value) {
 };
 
 
-
-
 function convertMs(ms) {
     // Number of milliseconds per unit of time
     const second = 1000;
@@ -121,21 +120,22 @@ function stopTimer(countdownTimer) {
         Notiflix.Report.success('Finished', 'Your timer finished', 'OK');
         startBtn.classList.remove('start-is-active');
         isActive = false;
-    };
-    
-}
+       
+    }; 
+
+};
 
 function onResetBtnClick() {
     clearInterval(intervalId);
     isActive = false;
     startBtn.classList.remove('start-is-active');
-
-    daysTimer.textContent = '00';
-    hoursTimer.textContent = '00';
-    minutesTimer.textContent = '00';
-    secondsTimer.textContent = '00';
-
+    updatePage();
 };
+
+function updatePage() {
+    document.location.reload()
+    
+}
   
 
  
