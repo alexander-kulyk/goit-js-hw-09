@@ -6,6 +6,7 @@ import "flatpickr/dist/flatpickr.min.css";
 
 const inputTimer = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('button[data-start]');
+const resetBtn = document.querySelector('button[data-stop]')
 const daysTimer = document.querySelector('[data-days]');
 const hoursTimer = document.querySelector('[data-hours]');
 const minutesTimer = document.querySelector('[data-minutes]');
@@ -14,6 +15,7 @@ const secondsTimer = document.querySelector('[data-seconds]')
 
 startBtn.setAttribute('disabled',true)
 startBtn.addEventListener('click', onStartBtnClick);
+resetBtn.addEventListener('click', onResetBtnClick)
 
 let intervalId = null;
 let isActive = false;
@@ -26,6 +28,7 @@ const options = {
     onClose(selectedDates) {
         const currentTime = options.defaultDate
         const deltaTime = selectedDates[0] - currentTime;
+        
 
         if (isActive) {
             return;
@@ -33,10 +36,11 @@ const options = {
         };
         
         if (deltaTime < 0) {
-            return alert("Please choose a date in the future");
+            return Notiflix.Notify.info('Please choose a date in the future');
             
         }  else {
             startBtn.removeAttribute('disabled');
+            startBtn.classList.add('start-is-active');
             options.selectedDates = selectedDates[0].getTime();
             isActive = true;
 
@@ -49,8 +53,13 @@ const options = {
 
 inputTimer.addEventListener('input', flatpickr('input[type="text"]', options));
 
+
 function onStartBtnClick() {
+
     startBtn.setAttribute('disabled',true)
+    startBtn.classList.remove('start-is-active');
+    Notiflix.Notify.success('Timer started');
+
     const selectedDates = options.selectedDates
     
 
@@ -106,13 +115,27 @@ function updateTimerFace({ days, hours, minutes, seconds }) {
 
 
 function stopTimer(countdownTimer) {
-    // console.log(countdownTimer);
-    if (countdownTimer < 1000) {
+    console.log(countdownTimer);
+    if (countdownTimer < 1000 ) {
         clearInterval(intervalId);
+        Notiflix.Report.success('Finished', 'Your timer finished', 'OK');
+        startBtn.classList.remove('start-is-active');
         isActive = false;
-    }
+    };
     
 }
+
+function onResetBtnClick() {
+    clearInterval(intervalId);
+    isActive = false;
+    startBtn.classList.remove('start-is-active');
+
+    daysTimer.textContent = '00';
+    hoursTimer.textContent = '00';
+    minutesTimer.textContent = '00';
+    secondsTimer.textContent = '00';
+
+};
   
 
  
