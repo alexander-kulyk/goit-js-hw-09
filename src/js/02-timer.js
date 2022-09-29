@@ -27,7 +27,7 @@ const options = {
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-        const currentTime = options.defaultDate
+        const currentTime = new Date;
         const deltaTime = selectedDates[0] - currentTime;
         
 
@@ -117,7 +117,9 @@ function stopTimer(countdownTimer) {
     console.log(countdownTimer);
     if (countdownTimer < 1000 ) {
         clearInterval(intervalId);
-        Notiflix.Report.success('Finished', 'Your timer finished', 'OK');
+        Notiflix.Report.success('Finished', 'Your timer finished', 'OK',function cb() {
+            updatePage();
+          });
         startBtn.classList.remove('start-is-active');
         isActive = false;
        
