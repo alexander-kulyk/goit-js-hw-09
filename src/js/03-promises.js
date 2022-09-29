@@ -66,6 +66,7 @@ function onSubmit(evt) {
     Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
   });
     }, delay);
+    
 
     delay  = delay + step;
   }
