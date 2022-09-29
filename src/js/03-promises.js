@@ -67,11 +67,12 @@ function onSubmit(evt) {
   });
     }, delay);
     
-
     delay  = delay + step;
   }
 
-}
+  form.reset();
+
+};
 // const qqq = Number(form[0].value)
 
 
