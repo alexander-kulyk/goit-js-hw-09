@@ -52,7 +52,7 @@ function onInputValue(evt) {
   amount = Number(formData.amount);
 
   if (firstDelay < 0 || step < 0 || amount < 0) {
-    Notiflix.Notify.failure('the number must be greater than zero')
+    Notiflix.Notify.failure('the number must be more than zero')
     return;
     
   }
