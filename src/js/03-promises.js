@@ -50,6 +50,12 @@ function onInputValue(evt) {
   firstDelay =  Number(formData.delay);
   step = Number(formData.step);
   amount = Number(formData.amount);
+
+  if (firstDelay < 0 || step < 0 || amount < 0) {
+    Notiflix.Notify.failure('the number must be greater than zero')
+    return;
+    
+  }
 };
 
 function onSubmit(evt) {
